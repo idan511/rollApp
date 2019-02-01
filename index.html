@@ -339,7 +339,7 @@
 				-webkit-flex-direction:column;
 				-webkit-align-items:center;
 				-webkit-justify-content:center;
-				transition: all 0.5s;
+				transition: all 0.5s, background-color 0.2s;
 			}
 			.tab {
 				display:block;
@@ -357,7 +357,10 @@
 				vertical-align:center;
 				border:solid 1px;
 				width:25%;
-				transition: all 0.5s;
+				transition: all 0.5s, background-color 0.2s;
+			}
+			.gridTbl td:active, nav>label:active {
+				background-color: rgba(0,0,0,0.2);
 			}
 			.gridinputs {
 				height: 100%;
@@ -1850,7 +1853,7 @@
 		        var center = 70;
 		        var k      = 0.04;
 		        var range  = Math.sqrt(Math.pow(tp.x - rsp.x,2)+Math.pow(tp.y - rsp.y,2));
-		        if(range < 4 && hdg != null) {
+		        if(range < 5 && hdg != null) {
 		        	console.log("small range! (" + range + ")")
 		        	return Math.round(hdg);
 		        }
@@ -3731,7 +3734,7 @@
 				<button onclick="toggleFullScreen()">מסך מלא</button>
 				<hr>
 				<div id="credits">
-					1.0.5 - נוצר ע״י עידן הלפרין
+					1.0.7 - נוצר ע״י עידן הלפרין
 				</div>
 			</div>
 			</div>
