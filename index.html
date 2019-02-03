@@ -516,26 +516,34 @@
 			}
 			.fileLists {
 				position: fixed;
-				bottom:100vh;
-				left:0px;
+				bottom: 100vh;
+				left: 0px;
 				width: 100vw;
 				height: 100vh;
 				backdrop-filter: blur(5px);
 				-webkit-backdrop-filter: blur(5px);
 				background-color: rgba(255,255,255,0.6);
 				transition: transform 0.4s ease-in-out;
-				z-index:10;
+				z-index: 10;
 				box-sizing: border-box;
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+				justify-content: center;
 			}
-			.fileLists>header {
+			.fileLists header {
 				display: flex;
 				-webkit-align-items: center;
 				-webkit-justify-content: center;
-				font-size:25px;
-				position: absolute;
+				font-size: 25px;
+				/* position: absolute; */
 				backdrop-filter: blur(5px);
 				-webkit-backdrop-filter: blur(5px);
 				background-color: rgba(255,255,255,0.6);
+				width: 90vw;
+				max-width: 800px;
+				border-top-right-radius: 20px;
+				border-top-left-radius: 20px;
 			}
 			.fileLists>header+div {
 				/*position:absolute;
@@ -549,29 +557,46 @@
 				cursor: pointer;*/
 			}
 			#flcontainer {
-				width: 100vw;
-				height: 100vh;
-				padding-top: 65px;
+				width: 90vw;
+				max-width: 800px;
+				height: 70vh;
+				max-height: 1000px;
 				box-sizing: border-box;
 				overflow-y: scroll;
 				-webkit-overflow-scrolling: touch;
+				box-shadow: 0px 5px 10px black;
+				border-radius: 20px;
+				background-color: white;
 			}
 			#flippinList {
 				display:flex;
 				flex-direction:column;
 				align-items: center;
 			}
+			.savePlus {
+				width:calc(100% - 40px) !important;
+				margin:20px;
+				border-radius: 20px;
+			}
 			#flippinList>div {
-				width:90vw;
-				max-width:800px;
-				padding:10px;
-				border-radius: 10px;
-				background-color: rgba(200,200,200,0.6);
+				width: 100%;
+				max-width: 800px;
+				padding: 10px;
+				/* border-radius: 10px; */
+				background-color: rgba(255,255,255,1);
 				box-sizing: border-box;
 				cursor: pointer;
-				margin-bottom: 15px;
+				/* margin-bottom: 15px; */
 				min-height: calc(2.2vh + 54.5px);
 				font-size: calc(1.5vh + 15px);
+				/* box-shadow: 0px 2px 5px black; */
+				border-bottom: solid 1px #ddd;
+			}
+			#flippinList>div:hover {
+				background-color: rgba(230,230,230,1);
+			}
+			#flippinList>div:active {
+				background-color: rgba(210,210,210,1);
 			}
 			#flippinList>div>span {
 				float: left;
@@ -600,11 +625,12 @@
 			.empty {
 				text-decoration:none;
 				text-align:center;
-				border: dashed 2px #7d7d7d;
+				border: dashed 2px #7d7d7d !important;
 				background-color: rgba(200,200,200,0) !important;
 				display:flex;
 				justify-content:center;
 				align-items: center;
+				box-shadow: none !important;
 			}
 			.delLaunch {
 				font-size:12px;
@@ -832,16 +858,16 @@
 				transition:opacity 1s, filter 1s, transform 1s;
 			}
 			.gametopbar {
-				width:100vw;
-				height:49px;
-				box-shadow:0px 5px 10px rgba(0,0,0,0.6);
+				height: 49px;
+				box-shadow: 0px 2px 2px rgba(0,0,0,0.6);
 				overflow: hidden;
 				direction: ltr;
+				/* margin-bottom: -49px; */
+				position: -webkit-sticky;
+				top: 0;
 			}
 			.gametopbar>* {
 				position: absolute;
-				height:49px;
-				box-sizing: border-box;
 			}
 			.gametopbar>meter {
 				top:0px;
@@ -876,10 +902,13 @@
 				display:flex;
 				-webkit-align-items: center;
 				-webkit-justify-content: center;
-				top:0px;
+				left:0px;
 				right:0px;
 				font-size:25px;
-				padding-right:20px;
+				padding-left:5px;
+				height:49px;
+				width:49px;
+				cursor: pointer;
 			}
 			#maindatatopbar {
 				display:flex;
@@ -2752,6 +2781,9 @@
 				if(namer == null) {
 					namer = prompt("שמור בשם:");
 				}
+				if(namer == null) {
+					return false
+				}
 				for(var i=0;i<s.length;i++) {
 					if(namer == s[i].name) {
 						if(confirm("הפעולה תמחק את הקובץ הקיים. האם לשמור?")!=true) {
@@ -2775,7 +2807,7 @@
 				}
 				flippinList.innerHTML = "";
 				if(type=="save") {
-					savePromptHeader.innerText = "בחר מיקום"
+					savePromptHeaderName.innerText = "בחר מיקום"
 					for(var i=s.length-1;i>=0;i--) {
 						var fRow = document.createElement("div");
 						var d = new Date();
@@ -2787,12 +2819,12 @@
 					}
 					var fRow = document.createElement("div");
 					fRow.setAttribute("onclick","javascript:addFileToList();");
-					fRow.setAttribute("class", "lillink empty")
+					fRow.setAttribute("class", "lillink empty savePlus")
 					fRow.innerText = "+"
 					flippinList.appendChild(fRow);
 				}
 				if(type=="open") {
-					savePromptHeader.innerText = "בחר אתר"
+					savePromptHeaderName.innerText = "בחר אתר"
 					for(var i=s.length-1;i>=0;i--) {
 						var fRow = document.createElement("div");
 						var d = new Date();
@@ -3734,7 +3766,7 @@
 				<button onclick="toggleFullScreen()">מסך מלא</button>
 				<hr>
 				<div id="credits">
-					1.0.7 - נוצר ע״י עידן הלפרין
+					1.0.8 - נוצר ע״י עידן הלפרין
 				</div>
 			</div>
 			</div>
@@ -3760,8 +3792,7 @@
 			<div class="lillink" onclick="closepicker()">ביטול</div>
 		</div>
 		<div id="saveList" class="fileLists">
-			<header id="savePromptHeader" class="gametopbar"></header><div onclick="closesavePrompt();" class="xbutton">✕</div>
-			<div id="flcontainer"><div id="flippinList"></div></div>
+			<div id="flcontainer"><header id="savePromptHeader" class="gametopbar"><span id="savePromptHeaderName"></span><div onclick="closesavePrompt();" class="xbutton">✕</div></header><div id="flippinList"></div></div>
 		</div>
 	</div>
 		<div id="trainerContainer" style="display:none;">
