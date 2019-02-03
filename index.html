@@ -516,7 +516,8 @@
 			}
 			.fileLists {
 				position: fixed;
-				bottom: 100vh;
+				/*bottom: 100vh;*/
+				top:0px;
 				left: 0px;
 				width: 100vw;
 				height: 100vh;
@@ -2837,11 +2838,13 @@
 				opensavePrompt();
 			}
 			function opensavePrompt() {
-				saveList.style.transform = "translateY(100vh)";
+				//saveList.style.transform = "translateY(100vh)";
+				saveList.dataset.show="true"
 			}
 
 			function closesavePrompt() {
-				saveList.style.transform = "translateY(0vh)";
+				//saveList.style.transform = "translateY(0vh)";
+				saveList.dataset.show="false"
 			}
 			function getElevationdiff(alt, range, rsE, rsH) {
 				var radius = 6731000;	//radius of earth in m
@@ -3766,7 +3769,7 @@
 				<button onclick="toggleFullScreen()">מסך מלא</button>
 				<hr>
 				<div id="credits">
-					1.0.8 - נוצר ע״י עידן הלפרין
+					1.0.9 - נוצר ע״י עידן הלפרין
 				</div>
 			</div>
 			</div>
@@ -3791,7 +3794,7 @@
 			<div><input type="text" placeholder="hex code" maxlength="7" size="7" id="customcolor" style="direction:ltr;"><button onclick="setColor(customcolor.value)">אשר</button></div>
 			<div class="lillink" onclick="closepicker()">ביטול</div>
 		</div>
-		<div id="saveList" class="fileLists">
+		<div id="saveList" class="fileLists" data-show="false">
 			<div id="flcontainer"><header id="savePromptHeader" class="gametopbar"><span id="savePromptHeaderName"></span><div onclick="closesavePrompt();" class="xbutton">✕</div></header><div id="flippinList"></div></div>
 		</div>
 	</div>
