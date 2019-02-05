@@ -2770,7 +2770,7 @@
 			function saveLocation(namer) {
 				var saveFileArr = [];
 				for ( var i = 0, len = localStorage.length, j=0; i < len; ++i, j++ ) {
-					if(localStorage.key(i) == "saveFiles") {
+					if(localStorage.key(i) == "saveFiles" || localStorage.key(i) == "azHS" || localStorage.key(i) == "gdHS" || localStorage.key(i).includes("game")) {
 						j--;
 					} else {
 						saveFileArr[j] = {name:localStorage.key(i),value:localStorage.getItem(localStorage.key(i))}
@@ -3843,7 +3843,7 @@
 				<button onclick="toggleFullScreen()">מסך מלא</button>
 				<hr>
 				<div id="credits">
-					1.1.13 - נוצר ע״י <a href="https://idanalper.in" target="_blank">עידן הלפרין</a>
+					1.1.14 - נוצר ע״י <a href="https://idanalper.in" target="_blank">עידן הלפרין</a>
 				</div>
 			</div>
 			</div>
